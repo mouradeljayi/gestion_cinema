@@ -7,5 +7,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface CinemaRepository extends JpaRepository<Cinema,Long> {
-    
+    Cinema findCinemaByName(String name);
 }

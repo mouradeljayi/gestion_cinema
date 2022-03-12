@@ -12,8 +12,8 @@ import java.util.Collection;
 public class Categorie {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 55)
+    @Column(length = 75)
     private String name;
-    @OneToMany(mappedBy = "categorie")
+    @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
     private Collection<Film> films;
 }

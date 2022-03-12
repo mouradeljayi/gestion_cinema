@@ -21,6 +21,6 @@ public class Film {
     private String photo;
     @ManyToOne
     private Categorie categorie;
-    @OneToMany(mappedBy = "film")
+    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
     private Collection<Projection> projections;
 }

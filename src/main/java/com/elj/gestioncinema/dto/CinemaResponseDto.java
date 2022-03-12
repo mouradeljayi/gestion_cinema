@@ -1,22 +1,21 @@
-package com.elj.gestioncinema.model;
+package com.elj.gestioncinema.dto;
 
+import com.elj.gestioncinema.model.Salle;
+import com.elj.gestioncinema.model.Ville;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.Collection;
 
-@Entity
-@Data @AllArgsConstructor @NoArgsConstructor
-public class Cinema {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CinemaResponseDto {
     private Long id;
     private String name;
     private double longitude, latitude, altitude;
     private int nombreSalles;
-    @OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL)
     private Collection<Salle> salles;
-    @ManyToOne
     private Ville ville;
 }

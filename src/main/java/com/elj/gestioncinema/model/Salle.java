@@ -16,9 +16,9 @@ public class Salle {
     private int nombrePlace;
     @ManyToOne
     private Cinema cinema;
-    @OneToMany(mappedBy = "salle")
+    @OneToMany(mappedBy = "salle", cascade = CascadeType.ALL)
     private Collection<Place> places;
-    @OneToMany(mappedBy = "salle")
+    @OneToMany(mappedBy = "salle", cascade = CascadeType.ALL)
     private Collection<Projection> projections;
     @ManyToOne
     private Film film;

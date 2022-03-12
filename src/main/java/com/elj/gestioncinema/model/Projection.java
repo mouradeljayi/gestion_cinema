@@ -19,7 +19,7 @@ public class Projection {
     private Salle salle;
     @ManyToOne
     private Film film;
-    @OneToMany(mappedBy = "projection")
+    @OneToMany(mappedBy = "projection", cascade = CascadeType.ALL)
     private Collection<Ticket> tickets;
     @ManyToOne
     private Seance seance;
