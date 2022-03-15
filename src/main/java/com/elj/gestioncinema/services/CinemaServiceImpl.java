@@ -2,6 +2,7 @@ package com.elj.gestioncinema.services;
 
 import com.elj.gestioncinema.dto.CinemaRequestDto;
 import com.elj.gestioncinema.dto.CinemaResponseDto;
+import com.elj.gestioncinema.exceptions.EntityNotFoundException;
 import com.elj.gestioncinema.model.Cinema;
 import com.elj.gestioncinema.repositories.CinemaRepository;
 import org.modelmapper.ModelMapper;
@@ -32,7 +33,7 @@ public class CinemaServiceImpl implements CinemaService {
     @Override
     public CinemaResponseDto findById(Long id) {
         Cinema cinema = cinemaRepository.findById(id).orElseThrow(()->
-                new RuntimeException("Client Not Found"));
+                new EntityNotFoundException("Cinema Not Found"));
         return modelMapper.map(cinema, CinemaResponseDto.class);
     }
 
@@ -50,10 +51,15 @@ public class CinemaServiceImpl implements CinemaService {
     @Override
     public CinemaResponseDto update(CinemaRequestDto cinemaRequestDto, Long id) {
         Optional<Cinema> cinemaOptional = cinemaRepository.findById(id);
-        Cinema cinema = modelMapper.map(cinemaRequestDto, Cinema.class);
-        cinema.setId(id);
-        Cinema updated = cinemaRepository.save(cinema);
-        return modelMapper.map(updated, CinemaResponseDto.class);
+        if(cinemaOptional.isPresent()) {
+            Cinema cinema = modelMapper.map(cinemaRequestDto, Cinema.class);
+            cinema.setId(id);
+            Cinema updated = cinemaRepository.save(cinema);
+            return modelMapper.map(updated, CinemaResponseDto.class);
+        } else {
+            throw new EntityNotFoundException("Cinema Not Found");
+        }
+
     }
 
     @Override
