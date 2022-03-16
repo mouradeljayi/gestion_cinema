@@ -12,6 +12,7 @@ import java.util.Collection;
 public class Ville {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String name;
     private double longitude, latitude, altitude;
     @OneToMany(mappedBy = "ville", cascade = CascadeType.ALL)

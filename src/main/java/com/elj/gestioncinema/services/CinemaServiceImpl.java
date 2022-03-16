@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @Service
 public class CinemaServiceImpl implements CinemaService {
 
-    private CinemaRepository cinemaRepository;
-    private ModelMapper modelMapper;
+    private final CinemaRepository cinemaRepository;
+    private final ModelMapper modelMapper;
 
     public CinemaServiceImpl(CinemaRepository cinemaRepository, ModelMapper modelMapper) {
         this.cinemaRepository = cinemaRepository;
@@ -39,7 +39,7 @@ public class CinemaServiceImpl implements CinemaService {
 
     @Override
     public CinemaResponseDto findByName(String name) {
-        Cinema cinema = cinemaRepository.findCinemaByName(name);
+        Optional<Cinema> cinema = cinemaRepository.findCinemaByName(name);
         return modelMapper.map(cinema, CinemaResponseDto.class);
     }
 

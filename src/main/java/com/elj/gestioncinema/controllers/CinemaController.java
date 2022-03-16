@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class CinemaController {
     }
 
     @PostMapping("")
-    public ResponseEntity<CinemaResponseDto>  save(@RequestBody CinemaRequestDto cinemaRequestDto) {
+    public ResponseEntity<CinemaResponseDto>  save(@Valid @RequestBody CinemaRequestDto cinemaRequestDto) {
         return new ResponseEntity<>(cinemaService.save(cinemaRequestDto), HttpStatus.CREATED);
     }
 
@@ -48,7 +49,7 @@ public class CinemaController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<CinemaResponseDto> update(@RequestBody() CinemaRequestDto cinemaRequestDto, @PathVariable() Long id) {
+    public ResponseEntity<CinemaResponseDto> update(@Valid @RequestBody() CinemaRequestDto cinemaRequestDto, @PathVariable() Long id) {
         CinemaResponseDto cinemaResponseDto = cinemaService.update(cinemaRequestDto, id);
         return ResponseEntity.accepted().body(cinemaResponseDto);
     }

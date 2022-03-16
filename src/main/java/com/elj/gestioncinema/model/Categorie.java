@@ -12,7 +12,7 @@ import java.util.Collection;
 public class Categorie {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 75)
+    @Column(length = 75, unique = true)
     private String name;
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
     private Collection<Film> films;

@@ -1,17 +1,23 @@
 package com.elj.gestioncinema.dto;
 
-import com.elj.gestioncinema.model.Salle;
-import com.elj.gestioncinema.model.Ville;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @Data @AllArgsConstructor @NoArgsConstructor
 public class CinemaRequestDto {
+    @NotBlank
     private String name;
+    @NotNull(message = "Les corodonnées géograpiques sont obligatoires")
     private double longitude, latitude, altitude;
+    @NotNull
     private int nombreSalles;
-    private Collection<Salle> salles;
-    private Ville ville;
+    @NotNull
+    private Collection<SalleDto> salles;
+    @NotBlank
+    private VilleDto ville;
 }
