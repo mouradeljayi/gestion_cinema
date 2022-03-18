@@ -36,7 +36,7 @@ public class CategorieController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<CategorieDto> findByName(@PathVariable() String name) {
+    public ResponseEntity<CategorieDto> findByName(@PathVariable String name) {
         CategorieDto categorieDto = categorieService.findByName(name);
         return ResponseEntity.ok(categorieDto);
     }
@@ -48,7 +48,7 @@ public class CategorieController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<CategorieDto> update(@Valid @RequestBody() CategorieDto categorieDto, @PathVariable() Long id) {
+    public ResponseEntity<CategorieDto> update(@Valid @RequestBody CategorieDto categorieDto, @PathVariable Long id) {
         CategorieDto categorie = categorieService.update(categorieDto, id);
         return ResponseEntity.accepted().body(categorie);
     }

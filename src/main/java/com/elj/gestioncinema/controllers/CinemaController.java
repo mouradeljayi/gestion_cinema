@@ -37,7 +37,7 @@ public class CinemaController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<CinemaResponseDto> findByName(@PathVariable() String name) {
+    public ResponseEntity<CinemaResponseDto> findByName(@PathVariable String name) {
         CinemaResponseDto cinemaResponseDto = cinemaService.findByName(name);
         return ResponseEntity.ok(cinemaResponseDto);
     }
@@ -49,7 +49,7 @@ public class CinemaController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<CinemaResponseDto> update(@Valid @RequestBody() CinemaRequestDto cinemaRequestDto, @PathVariable() Long id) {
+    public ResponseEntity<CinemaResponseDto> update(@Valid @RequestBody CinemaRequestDto cinemaRequestDto, @PathVariable Long id) {
         CinemaResponseDto cinemaResponseDto = cinemaService.update(cinemaRequestDto, id);
         return ResponseEntity.accepted().body(cinemaResponseDto);
     }
