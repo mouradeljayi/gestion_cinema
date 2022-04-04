@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class Ticket {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String nomClient;
     private double prix;
     @Column(unique = true)

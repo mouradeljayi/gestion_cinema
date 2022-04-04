@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
+import java.util.List;
 
 @Data @AllArgsConstructor @NoArgsConstructor
 public class CinemaRequestDto {
@@ -17,7 +17,7 @@ public class CinemaRequestDto {
     @NotNull
     private int nombreSalles;
     @NotNull
-    private Collection<SalleDto> salles;
+    private List<SalleDto> salles;
     @NotBlank
     private VilleDto ville;
 }

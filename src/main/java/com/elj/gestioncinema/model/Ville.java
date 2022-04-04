@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
@@ -16,5 +16,5 @@ public class Ville {
     private String name;
     private double longitude, latitude, altitude;
     @OneToMany(mappedBy = "ville", cascade = CascadeType.ALL)
-    private Collection<Cinema> cinemas;
+    private List<Cinema> cinemas;
 }

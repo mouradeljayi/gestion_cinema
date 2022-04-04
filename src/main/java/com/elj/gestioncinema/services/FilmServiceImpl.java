@@ -1,9 +1,7 @@
 package com.elj.gestioncinema.services;
 
-import com.elj.gestioncinema.dto.CinemaResponseDto;
 import com.elj.gestioncinema.dto.FilmDto;
 import com.elj.gestioncinema.exceptions.EntityNotFoundException;
-import com.elj.gestioncinema.model.Cinema;
 import com.elj.gestioncinema.model.Film;
 import com.elj.gestioncinema.repositories.FilmRepository;
 import org.modelmapper.ModelMapper;

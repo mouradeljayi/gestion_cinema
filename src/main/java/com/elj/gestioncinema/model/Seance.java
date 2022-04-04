@@ -12,6 +12,7 @@ import java.util.Date;
 public class Seance {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     @Temporal(TemporalType.TIME)
     private Date heureDebut;
 }

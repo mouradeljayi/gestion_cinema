@@ -6,13 +6,13 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
+import java.util.List;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class CategorieDto {
     @NotBlank
     private String name;
     @NotNull
-    private Collection<FilmDto> films;
+    private List<FilmDto> films;
 
 }

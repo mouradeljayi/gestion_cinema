@@ -5,14 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Projection {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private Date dateProjection;
     private double prix;
     @ManyToOne
@@ -20,7 +21,7 @@ public class Projection {
     @ManyToOne
     private Film film;
     @OneToMany(mappedBy = "projection", cascade = CascadeType.ALL)
-    private Collection<Ticket> tickets;
+    private List<Ticket> tickets;
     @ManyToOne
     private Seance seance;
 }

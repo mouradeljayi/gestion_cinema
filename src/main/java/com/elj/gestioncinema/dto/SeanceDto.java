@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Data @AllArgsConstructor @NoArgsConstructor
-public class VilleDto {
-    private String name;
-    private double longitude, latitude, altitude;
-    private List<CinemaRequestDto> cinemas;
+public class SeanceDto {
+    @NotNull
+    private Date heureDebut;
 }

@@ -12,6 +12,7 @@ import java.util.Collection;
 public class Salle {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String name;
     private int nombrePlace;
     @ManyToOne

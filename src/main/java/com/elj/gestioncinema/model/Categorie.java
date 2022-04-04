@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
@@ -15,5 +16,5 @@ public class Categorie {
     @Column(length = 75, unique = true)
     private String name;
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
-    private Collection<Film> films;
+    private List<Film> films;
 }

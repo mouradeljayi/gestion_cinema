@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data @AllArgsConstructor @NoArgsConstructor
-public class VilleDto {
-    private String name;
+@Data @NoArgsConstructor @AllArgsConstructor
+public class PlaceDto {
+    private int numero;
     private double longitude, latitude, altitude;
-    private List<CinemaRequestDto> cinemas;
+    private SalleDto salle;
+    private List<TicketDto> tickets;
 }

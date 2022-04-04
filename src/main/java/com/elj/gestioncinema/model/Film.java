@@ -5,14 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Film {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String titre;
     private String description;
     private String realisateur;
@@ -22,5 +23,5 @@ public class Film {
     @ManyToOne
     private Categorie categorie;
     @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
-    private Collection<Projection> projections;
+    private List<Projection> projections;
 }
