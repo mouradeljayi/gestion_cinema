@@ -1,8 +1,6 @@
 package com.elj.gestioncinema.controllers;
 
-import com.elj.gestioncinema.dto.FilmDto;
 import com.elj.gestioncinema.dto.PlaceDto;
-import com.elj.gestioncinema.model.Place;
 import com.elj.gestioncinema.services.PlaceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("places")
 public class PlaceController {
 
     PlaceService placeService;
@@ -32,7 +30,7 @@ public class PlaceController {
         return ResponseEntity.ok(placeDto);
     }
 
-    @GetMapping("/search/{titre}")
+    @GetMapping("/search/{numero}")
     public ResponseEntity<PlaceDto> findByNumero(@PathVariable int numero) {
         PlaceDto placeDto = placeService.findByNumero(numero);
         return ResponseEntity.ok(placeDto);

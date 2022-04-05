@@ -1,22 +1,19 @@
 package com.elj.gestioncinema.services;
 
-import com.elj.gestioncinema.dto.CinemaRequestDto;
-import com.elj.gestioncinema.dto.CinemaResponseDto;
+import com.elj.gestioncinema.dto.CinemaDto;
 
 import java.util.List;
 
-
 public interface CinemaService {
+    CinemaDto save(CinemaDto cinemaDto);
 
-    CinemaResponseDto save(CinemaRequestDto cinemaRequestDto);
+    CinemaDto findById(Long id);
 
-    CinemaResponseDto findById(Long id);
-
-    CinemaResponseDto findByName(String name);
+    CinemaDto findByName(String name);
 
     void delete(Long id);
 
-    CinemaResponseDto update(CinemaRequestDto cinemaRequestDto, Long id);
+    CinemaDto update(CinemaDto cinemaDto, Long id);
 
-    List<CinemaResponseDto> findAll();
+    List<CinemaDto> findAll();
 }

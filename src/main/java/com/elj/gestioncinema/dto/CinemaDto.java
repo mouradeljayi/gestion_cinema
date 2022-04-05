@@ -5,19 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Data @AllArgsConstructor @NoArgsConstructor
-public class CinemaRequestDto {
+@Data @NoArgsConstructor @AllArgsConstructor
+public class CinemaDto {
     @NotBlank
     private String name;
-    @NotNull(message = "Les corodonnées géograpiques sont obligatoires")
     private double longitude, latitude, altitude;
-    @NotNull
     private int nombreSalles;
-    @NotNull
     private List<SalleDto> salles;
-    @NotBlank
     private VilleDto ville;
 }

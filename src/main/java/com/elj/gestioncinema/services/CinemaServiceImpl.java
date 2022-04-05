@@ -1,7 +1,6 @@
 package com.elj.gestioncinema.services;
 
-import com.elj.gestioncinema.dto.CinemaRequestDto;
-import com.elj.gestioncinema.dto.CinemaResponseDto;
+import com.elj.gestioncinema.dto.CinemaDto;
 import com.elj.gestioncinema.exceptions.EntityNotFoundException;
 import com.elj.gestioncinema.model.Cinema;
 import com.elj.gestioncinema.repositories.CinemaRepository;
@@ -13,10 +12,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class CinemaServiceImpl implements CinemaService {
+public class CinemaServiceImpl implements CinemaService{
 
-    private final CinemaRepository cinemaRepository;
-    private final ModelMapper modelMapper;
+    CinemaRepository cinemaRepository;
+    ModelMapper modelMapper;
 
     public CinemaServiceImpl(CinemaRepository cinemaRepository, ModelMapper modelMapper) {
         this.cinemaRepository = cinemaRepository;
@@ -24,23 +23,23 @@ public class CinemaServiceImpl implements CinemaService {
     }
 
     @Override
-    public CinemaResponseDto save(CinemaRequestDto cinemaRequestDto) {
-        Cinema cinema = modelMapper.map(cinemaRequestDto, Cinema.class);
+    public CinemaDto save(CinemaDto cinemaDto) {
+        Cinema cinema = modelMapper.map(cinemaDto, Cinema.class);
         Cinema saved = cinemaRepository.save(cinema);
-        return modelMapper.map(saved, CinemaResponseDto.class);
+        return modelMapper.map(saved, CinemaDto.class);
     }
 
     @Override
-    public CinemaResponseDto findById(Long id) {
+    public CinemaDto findById(Long id) {
         Cinema cinema = cinemaRepository.findById(id).orElseThrow(()->
                 new EntityNotFoundException("Cinema Not Found"));
-        return modelMapper.map(cinema, CinemaResponseDto.class);
+        return modelMapper.map(cinema, CinemaDto.class);
     }
 
     @Override
-    public CinemaResponseDto findByName(String name) {
+    public CinemaDto findByName(String name) {
         Optional<Cinema> cinema = cinemaRepository.findCinemaByName(name);
-        return modelMapper.map(cinema, CinemaResponseDto.class);
+        return modelMapper.map(cinema, CinemaDto.class);
     }
 
     @Override
@@ -49,23 +48,22 @@ public class CinemaServiceImpl implements CinemaService {
     }
 
     @Override
-    public CinemaResponseDto update(CinemaRequestDto cinemaRequestDto, Long id) {
+    public CinemaDto update(CinemaDto cinemaDto, Long id) {
         Optional<Cinema> cinemaOptional = cinemaRepository.findById(id);
         if(cinemaOptional.isPresent()) {
-            Cinema cinema = modelMapper.map(cinemaRequestDto, Cinema.class);
+            Cinema cinema = modelMapper.map(cinemaDto, Cinema.class);
             cinema.setId(id);
             Cinema updated = cinemaRepository.save(cinema);
-            return modelMapper.map(updated, CinemaResponseDto.class);
+            return modelMapper.map(updated, CinemaDto.class);
         } else {
             throw new EntityNotFoundException("Cinema Not Found");
         }
-
     }
 
     @Override
-    public List<CinemaResponseDto> findAll() {
+    public List<CinemaDto> findAll() {
         return cinemaRepository.findAll().stream()
-                .map(el->modelMapper.map(el,CinemaResponseDto.class))
+                .map(el->modelMapper.map(el,CinemaDto.class))
                 .collect(Collectors.toList());
     }
 }

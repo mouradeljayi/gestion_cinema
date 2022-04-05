@@ -1,7 +1,6 @@
 package com.elj.gestioncinema.controllers;
 
-import com.elj.gestioncinema.dto.CinemaRequestDto;
-import com.elj.gestioncinema.dto.CinemaResponseDto;
+import com.elj.gestioncinema.dto.CinemaDto;
 import com.elj.gestioncinema.services.CinemaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,38 +19,37 @@ public class CinemaController {
         this.cinemaService = cinemaService;
     }
 
-    @GetMapping("")
-    public ResponseEntity<List<CinemaResponseDto>>  getCinemas() {
-        return new ResponseEntity<>(cinemaService.findAll(), HttpStatus.OK);
-    }
-
     @PostMapping("")
-    public ResponseEntity<CinemaResponseDto>  save(@Valid @RequestBody CinemaRequestDto cinemaRequestDto) {
-        return new ResponseEntity<>(cinemaService.save(cinemaRequestDto), HttpStatus.CREATED);
+    public ResponseEntity<CinemaDto> save(@Valid @RequestBody CinemaDto cinemaDto) {
+        return new ResponseEntity<>(cinemaService.save(cinemaDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/search/{id}")
-    public ResponseEntity<CinemaResponseDto>  findById(@PathVariable("id") Long id) {
-        CinemaResponseDto cinemaResponseDto = cinemaService.findById(id);
-        return ResponseEntity.ok(cinemaResponseDto);
+    public ResponseEntity<CinemaDto> findById(@PathVariable Long id) {
+        CinemaDto cinemaDto = cinemaService.findById(id);
+        return ResponseEntity.ok(cinemaDto);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<CinemaResponseDto> findByName(@PathVariable String name) {
-        CinemaResponseDto cinemaResponseDto = cinemaService.findByName(name);
-        return ResponseEntity.ok(cinemaResponseDto);
+    @GetMapping("/search/{name}")
+    public ResponseEntity<CinemaDto> findByName(@PathVariable String name) {
+        CinemaDto cinemaDto = cinemaService.findByName(name);
+        return ResponseEntity.ok(cinemaDto);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         cinemaService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<CinemaResponseDto> update(@Valid @RequestBody CinemaRequestDto cinemaRequestDto, @PathVariable Long id) {
-        CinemaResponseDto cinemaResponseDto = cinemaService.update(cinemaRequestDto, id);
-        return ResponseEntity.accepted().body(cinemaResponseDto);
+    public ResponseEntity<CinemaDto> update(@Valid @RequestBody CinemaDto cinemaDto, @PathVariable Long id) {
+        CinemaDto cinema = cinemaService.update(cinemaDto, id);
+        return ResponseEntity.accepted().body(cinema);
     }
 
+    @GetMapping("")
+    public ResponseEntity<List<CinemaDto>> getCinemas() {
+        return new ResponseEntity<>(cinemaService.findAll(), HttpStatus.OK);
+    }
 }
