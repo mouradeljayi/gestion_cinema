@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor
-public class UserRequestDto {
+public class UserDto {
     private String username;
     private String photo;
     private String email;

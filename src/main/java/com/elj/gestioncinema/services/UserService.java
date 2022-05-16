@@ -1,22 +1,21 @@
 package com.elj.gestioncinema.services;
 
-import com.elj.gestioncinema.dto.UserRequestDto;
-import com.elj.gestioncinema.dto.UserResponseDto;
+import com.elj.gestioncinema.dto.UserDto;
 
 import java.util.List;
 
 
 public interface UserService {
 
-    UserResponseDto save(UserResponseDto cinemaRequestDto);
+    UserDto save(UserDto userDto);
 
-    UserResponseDto findById(Long id);
+    UserDto findById(Long id);
 
-    UserResponseDto findByUsername(String username);
+    UserDto findByUsername(String username);
 
     void delete(Long id);
 
-    UserResponseDto update(UserRequestDto cinemaRequestDto, Long id);
+    UserDto update(UserDto userDto, Long id);
 
-    List<UserResponseDto> findAll();
+    List<UserDto> findAll();
 }

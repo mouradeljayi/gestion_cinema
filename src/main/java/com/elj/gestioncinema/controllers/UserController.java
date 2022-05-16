@@ -1,7 +1,6 @@
 package com.elj.gestioncinema.controllers;
 
-import com.elj.gestioncinema.dto.UserRequestDto;
-import com.elj.gestioncinema.dto.UserResponseDto;
+import com.elj.gestioncinema.dto.UserDto;
 import com.elj.gestioncinema.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,25 +20,25 @@ public class UserController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<UserResponseDto>>  getUsers() {
+    public ResponseEntity<List<UserDto>>  getUsers() {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<UserResponseDto>  save(@Valid @RequestBody UserRequestDto userRequestDto) {
-        return new ResponseEntity<>(userService.save(userRequestDto), HttpStatus.CREATED);
+    public ResponseEntity<UserDto>  save(@Valid @RequestBody UserDto userDto) {
+        return new ResponseEntity<>(userService.save(userDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/search/{id}")
-    public ResponseEntity<UserResponseDto>  findById(@PathVariable("id") Long id) {
-        UserResponseDto userResponseDto = userService.findById(id);
-        return ResponseEntity.ok(userResponseDto);
+    public ResponseEntity<UserDto>  findById(@PathVariable("id") Long id) {
+        UserDto UserDto = userService.findById(id);
+        return ResponseEntity.ok(UserDto);
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<UserResponseDto> findByUsername(@PathVariable String username) {
-        UserResponseDto userResponseDto = userService.findByUsername(username);
-        return ResponseEntity.ok(userResponseDto);
+    public ResponseEntity<UserDto> findByUsername(@PathVariable String username) {
+        UserDto userDto = userService.findByUsername(username);
+        return ResponseEntity.ok(userDto);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -49,9 +48,9 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<UserResponseDto> update(@Valid @RequestBody UserRequestDto userRequestDto, @PathVariable Long id) {
-        UserResponseDto userResponseDto = userService.update(userRequestDto, id);
-        return ResponseEntity.accepted().body(userResponseDto);
+    public ResponseEntity<UserDto> update(@Valid @RequestBody UserDto userDto, @PathVariable Long id) {
+        UserDto user = userService.update(userDto, id);
+        return ResponseEntity.accepted().body(user);
     }
 
 }

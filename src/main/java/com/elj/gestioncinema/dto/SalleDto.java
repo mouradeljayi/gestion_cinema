@@ -11,7 +11,7 @@ import java.util.List;
 public class SalleDto {
     private String name;
     private int nombrePlace;
-    private UserRequestDto cinema;
+    private UserDto cinema;
     private List<PlaceDto> places;
     private FilmDto film;
 }
