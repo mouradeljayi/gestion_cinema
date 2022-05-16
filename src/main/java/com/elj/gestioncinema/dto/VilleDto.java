@@ -8,7 +8,8 @@ import java.util.List;
 
 @Data @AllArgsConstructor @NoArgsConstructor
 public class VilleDto {
+    private Long id;
     private String name;
     private double longitude, latitude, altitude;
-    private List<UserRequestDto> cinemas;
+    //private List<CinemaDto> cinemas;
 }

@@ -13,6 +13,5 @@ public class SalleDto {
     private int nombrePlace;
     private UserRequestDto cinema;
     private List<PlaceDto> places;
-    private List<ProjectionDto> projections;
     private FilmDto film;
 }

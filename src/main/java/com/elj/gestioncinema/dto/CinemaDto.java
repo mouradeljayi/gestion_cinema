@@ -9,10 +9,11 @@ import java.util.List;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class CinemaDto {
+    private Long id;
     @NotBlank
     private String name;
     private double longitude, latitude, altitude;
     private int nombreSalles;
-    private List<SalleDto> salles;
+    //private List<SalleDto> salles;
     private VilleDto ville;
 }

@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("villes")
+@RequestMapping("/api/villes")
 public class VilleController {
 
     VilleService villeService;
@@ -19,12 +20,12 @@ public class VilleController {
         this.villeService = villeService;
     }
 
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<VilleDto> save(@Valid @RequestBody VilleDto villeDto) {
         return new ResponseEntity<>(villeService.save(villeDto), HttpStatus.CREATED);
     }
 
-    @GetMapping("/search/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<VilleDto> findById(@PathVariable Long id) {
         VilleDto villeDto = villeService.findById(id);
         return ResponseEntity.ok(villeDto);
@@ -48,7 +49,7 @@ public class VilleController {
         return ResponseEntity.accepted().body(ville);
     }
 
-    @GetMapping("")
+    @GetMapping("/all")
     public ResponseEntity<List<VilleDto>> getVilles() {
         return new ResponseEntity<>(villeService.findAll(), HttpStatus.OK);
     }

@@ -11,5 +11,5 @@ public class TicketDto {
     private int codePayement;
     private boolean reserve;
     private PlaceDto place;
-    private ProjectionDto projection;
+
 }

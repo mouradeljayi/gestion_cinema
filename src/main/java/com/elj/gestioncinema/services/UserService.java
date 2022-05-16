@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
 
-    UserResponseDto save(UserRequestDto cinemaRequestDto);
+    UserResponseDto save(UserResponseDto cinemaRequestDto);
 
     UserResponseDto findById(Long id);
 

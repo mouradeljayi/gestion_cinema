@@ -11,6 +11,7 @@ import java.util.List;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class FilmDto {
+    private Long id;
     @NotBlank
     private String titre;
     private String description;
@@ -20,6 +21,4 @@ public class FilmDto {
     private String photo;
     @NotNull
     private CategorieDto categorie;
-    @NotNull
-    private List<ProjectionDto> projections;
 }

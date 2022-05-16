@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
-@RequestMapping("categories")
+@RequestMapping("/api/categories")
 public class CategorieController {
 
     CategorieService categorieService;
@@ -19,17 +19,17 @@ public class CategorieController {
         this.categorieService = categorieService;
     }
 
-    @GetMapping("")
+    @RequestMapping(value="/all",method = RequestMethod.GET)
     public ResponseEntity<List<CategorieDto>> getCategories() {
         return new ResponseEntity<>(categorieService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<CategorieDto>  save(@Valid @RequestBody CategorieDto categorieDto) {
         return new ResponseEntity<>(categorieService.save(categorieDto), HttpStatus.CREATED);
     }
 
-    @GetMapping("/search/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CategorieDto>  findById(@PathVariable("id") Long id) {
         CategorieDto categorieDto = categorieService.findById(id);
         return ResponseEntity.ok(categorieDto);

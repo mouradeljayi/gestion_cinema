@@ -17,11 +17,11 @@ public class Film {
     private String titre;
     private String description;
     private String realisateur;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateSortie;
     private double duree;
     private String photo;
     @ManyToOne
     private Categorie categorie;
-    @OneToMany(mappedBy = "film", cascade = CascadeType.ALL)
-    private List<Projection> projections;
+
 }

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("films")
+@RequestMapping("/api/films")
 public class FilmController {
 
     FilmService filmService;
@@ -20,13 +20,13 @@ public class FilmController {
         this.filmService = filmService;
     }
 
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<FilmDto> save(@Valid @RequestBody FilmDto filmDto) {
         return new ResponseEntity<>(filmService.save(filmDto), HttpStatus.CREATED);
     }
 
-    @GetMapping("/search/{id}")
-    public ResponseEntity<FilmDto> findById(@PathVariable Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<FilmDto> findById(@PathVariable("id") Long id) {
         FilmDto filmDto = filmService.findById(id);
         return ResponseEntity.ok(filmDto);
     }
@@ -49,7 +49,7 @@ public class FilmController {
         return ResponseEntity.accepted().body(film);
     }
 
-    @GetMapping("")
+    @RequestMapping(value="/all",method = RequestMethod.GET)
     public ResponseEntity<List<FilmDto>> getFilms() {
         return new ResponseEntity<>(filmService.findAll(), HttpStatus.OK);
     }

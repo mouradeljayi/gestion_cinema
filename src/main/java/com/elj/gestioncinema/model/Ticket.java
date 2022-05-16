@@ -19,6 +19,5 @@ public class Ticket {
     private boolean reserve;
     @ManyToOne
     private Place place;
-    @ManyToOne
-    private Projection projection;
+
 }

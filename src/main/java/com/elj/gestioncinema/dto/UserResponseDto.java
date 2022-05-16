@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class UserResponseDto {
     private Long id;
     private String username;
+    private String photo;
     private String email;
     private String password;
 }

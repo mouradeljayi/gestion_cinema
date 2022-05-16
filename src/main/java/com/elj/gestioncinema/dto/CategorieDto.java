@@ -5,14 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class CategorieDto {
-    @NotBlank
+    private Long id;
+    @NotBlank(message = "le champ name ne doit pas étre vide")
     private String name;
-    @NotNull
-    private List<FilmDto> films;
+    //private List<FilmDto> films;
 
 }

@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto save(UserRequestDto userRequestDto) {
+    public UserResponseDto save(UserResponseDto userRequestDto) {
         User user = modelMapper.map(userRequestDto, User.class);
         User saved = userRepository.save(user);
         return modelMapper.map(saved, UserResponseDto.class);
